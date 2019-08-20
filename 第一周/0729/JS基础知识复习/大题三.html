@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>摇号系统</title>
+</head>
+
+<body>
+	<div class='box'>
+		<!--P：存放生成的车牌号-->
+		<p id='licensePlate'></p>
+		<input type='button' value='摇号' id='shakeBtn' />
+	</div>
+
+	<script>
+		let shakeBtn = document.querySelector('#shakeBtn'),
+			licensePlate = document.querySelector('#licensePlate');
+
+		// 封装生成随机数的方法
+		let RAN = (n, m) => Math.round(Math.random() * (m - n) + n);
+
+		// 点击摇号
+		let n = 0;
+		shakeBtn.onclick = function () {
+			n++;
+			if (n > 3) {
+				alert("只有三次机会~~");
+				return;
+			}
+
+			// 1.先生成京? （0~8）
+			let result = "";
+			let area1 = "ABCEFGHJK";
+			result += "京";
+			result += area1.charAt(RAN(0, 8));
+
+			// 2.生成五位车牌 （0~35）
+			let area2 = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+			for (let i = 1; i <= 5; i++) {
+				result += area2.charAt(RAN(0, 35));
+			}
+
+			// 3.放到容器中
+			licensePlate.innerHTML = result;
+		}
+	</script>
+</body>
+
+</html>

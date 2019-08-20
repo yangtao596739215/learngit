@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        (function () {
+            function MySlice(star, end) {
+                star = isNaN(Number(star)) ? 0 : star;
+                end = isNaN(Number(end)) ? this.length : end;
+                star = star < 0 ? Math.max(0, this.length + star) : star;
+                end = end < 0 ? this.length + end :  Math.min(end, this.length);
+                var varLen = end - star;
+                if (varLen > 0) {
+                    var ary = [];
+                    var n = 0;
+                    for (i = star; i < end; i++) {
+                        ary[n++] = this[i];
+                    }
+                    return ary;
+                } else {
+                    return [];
+                }
+            }
+            Array.prototype.mySlice = MySlice;
+        })()
+
+
+            (function () {
+                function arySize(star, end, item) {
+                    size = end - star;
+                    if (size > 0) {
+                        var ary = [];
+                        var n = 0;
+                        for (i = star; i < end; i++) {
+                            ary[n++] = item[i];
+                        }
+                        return ary;
+                    } else {
+                        return [];
+                    }
+                }
+                function MySlice(star, end) {
+                    star = isNaN(Number(star)) ? 0 : star;
+                    end = isNaN(Number(end)) ? this.length : end;
+                    star = star < 0 ? Math.max(0, this.length + star) : star;
+                    end = end > 0 ? Math.min(end, this.length) : this.length + end;
+                    ary = arySize(star, end, this);
+                    return ary;
+                }
+
+                Array.prototype.mySlice = MySlice;
+            })()
+    </script>
+</body>
+
+</html>
