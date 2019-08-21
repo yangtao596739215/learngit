@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    Array.prototype.mySlice = function (a, b) {
+        var newAry = [];
+        //处理没有参数的情况
+        if (a === undefined && b === undefined) {
+            return this
+        }
+        //处理只有一个参数，或者是第二个参数大于数组长度的情况
+        if (b === undefined || b > this.length) {
+            b = this.length
+        }
+        if (a === undefined) {
+            a = 0
+        }
+        //处理参数不是数字的情况(上面代码已经将undefined参数转化为非undefined参数并且保证参数为两个了)
+        if (typeof a !== 'number' || typeof b !== 'number') {
+            console.log('参数必须是数字')
+        }
+        //处理第一个参数为负数以及第一个参数大于第二个参数以及第二个参数是负数的情况的情况
+
+        if (b < 0) {
+            b = this.length + b
+        }
+        if (a < 0) {
+            a = this.length + a
+        }
+        //先将a,b恢复成正数再比较
+        if (a >= b || b === 0) {
+            return []
+        }
+        //正常 slice(a,b)
+        for (var i = a; i < b; i++) {
+            newAry.push(this[i])
+        }
+        return newAry
+    }
+
+</script>
+</body>
+</html>

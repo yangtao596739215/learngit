@@ -1,0 +1,12 @@
+{
+  "name": "0730",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "bootstrap": "3",
+    "jquery": "^3.4.1",
+    "less": "^3.9.0",
+    "zepto": "^1.2.0"
+  }
+}
